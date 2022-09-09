@@ -10,9 +10,10 @@ DECLARE_int32(WORKER_OP_NUM);
 
 static RandomGenerator sRandom;
 
-Worker::Worker() : mThread(&Worker::Run, this) {
-    mThread.detach();
+Worker::Worker() {
     mVec = ConcurrentArray<ARRAY_SIZE>::get_instance();
+    mThread = std::thread(&Worker::Run, this);
+    mThread.detach();
 }
 
 void Worker::Run() {
