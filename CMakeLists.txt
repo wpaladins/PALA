@@ -17,7 +17,6 @@ find_package(Threads REQUIRED)
 # base
 add_library(pala_base
     src/flags.cc
-    src/tools/scoped_shared_lock.cc
 )
 target_link_libraries(pala_base PUBLIC gflags::gflags)
 

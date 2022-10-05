@@ -47,10 +47,10 @@ void ConcurrentArray<_Nm>::Op(int source1, int source2, int source3, int target)
     assert(source3 >= 0 && source3 < mData.size());
     assert(target  >= 0 && target  < mData.size());
 
-    auto s1 = &mLocks[source1],
-         s2 = &mLocks[source2],
-         s3 = &mLocks[source3],
-         t  = &mLocks[target];
+    auto &s1 = mLocks[source1],
+         &s2 = mLocks[source2],
+         &s3 = mLocks[source3],
+         &t  = mLocks[target];
 
     // merge and scoped lock
     std::unique_ptr<ScopedSharedLock> _guard;
